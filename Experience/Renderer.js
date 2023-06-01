@@ -22,7 +22,6 @@ export default class Renderer{
             antialias: true
         })
 
-        this.renderer.physicallyCorrectLights = true
         this.renderer.outputColorSpace = THREE.SRGBColorSpace
         this.renderer.toneMapping = THREE.CineonToneMapping
         this.renderer.toneMappingExposure = 1.75
