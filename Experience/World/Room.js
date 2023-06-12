@@ -8,11 +8,15 @@ export default class Room{
         this.scene = this.experience.scene
         this.sizes = this.experience.sizes
         this.canvas = this.experience.canvas
+        this.resources = this.experience.resources
+        this.room = this.resources.items.room
+        this.actualRoom = this.room.scene
 
-        const geometry = new THREE.BoxGeometry(1,1,1)
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+        this.setModel()
+    }
 
-        const mesh = new THREE.Mesh(geometry, material)
-        this.scene.add(mesh)
+    setModel()
+    {
+        this.scene.add(this.actualRoom)
     }
 }

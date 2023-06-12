@@ -1,5 +1,6 @@
 import Experience from "./Experience";
 import * as THREE from 'three'
+import { OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 export default class Camera{
     constructor()
     {
@@ -10,6 +11,7 @@ export default class Camera{
 
         this.createPerspectiveCamera()
         this.createOrthographicCamera()
+        this.setOrbitControls()
     }
 
     createPerspectiveCamera()
@@ -33,6 +35,13 @@ export default class Camera{
         this.scene.add(this.orthographicCamera)
     }
 
+    setOrbitControls()
+    {
+        this.controls = new OrbitControls(this.perspectiveCamera, this.canvas)
+        this.controls.enableDamping = true
+        this.controls.zoom = true
+    }
+
     resize()
     {
         this.perspectiveCamera.aspect = this.sizes.aspectRatio
@@ -47,6 +56,6 @@ export default class Camera{
 
     update()
     {
-
+        this.controls.update()
     }
 }
