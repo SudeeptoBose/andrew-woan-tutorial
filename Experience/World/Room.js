@@ -18,7 +18,7 @@ export default class Room{
     setModel()
     {
         this.scene.add(this.actualRoom)
-        this.actualRoom.scale.set(0.5, 0.5, 0.5)
-        this.actualRoom.position.set(0,-0.4,0) 
+        this.actualRoom.scale.set(0.01, 0.01, 0.01)
+        this.actualRoom.position.set(1,-0.4,1) 
     }
 }
