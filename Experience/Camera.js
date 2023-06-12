@@ -18,7 +18,17 @@ export default class Camera{
     {
         this.perspectiveCamera = new THREE.PerspectiveCamera(35, this.sizes.aspectRatio, 0.1, 1000)
         this.scene.add(this.perspectiveCamera)
-        this.perspectiveCamera.position.z = 5
+        this.perspectiveCamera.position.z = 15
+        this.perspectiveCamera.position.y = 15
+
+        const size = 10;
+        const divisions = 10;
+        
+        const gridHelper = new THREE.GridHelper( size, divisions );
+        this.scene.add( gridHelper );
+        
+        const axesHelper = new THREE.AxesHelper( 5 );
+        this.scene.add( axesHelper );
     }
 
     createOrthographicCamera()
