@@ -19,6 +19,7 @@ export default class Room{
     {
         this.scene.add(this.actualRoom)
         this.actualRoom.scale.set(0.01, 0.01, 0.01)
-        this.actualRoom.position.set(1,-0.4,1) 
+        this.actualRoom.rotation.y = Math.PI /4
+        this.actualRoom.position.x = 0   
     }
 }
