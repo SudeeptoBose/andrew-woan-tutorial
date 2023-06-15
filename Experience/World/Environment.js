@@ -21,7 +21,7 @@ export default class Environment{
         this.sunLight.position.set(1.5, 7, 3)
         this.scene.add(this.sunLight)
 
-        // this.ambientLight = new THREE.AmbientLight(0xffffff, 1)
-        // this.scene.add(this.ambientLight)
+        this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+        this.scene.add(this.ambientLight)
     }
 }
