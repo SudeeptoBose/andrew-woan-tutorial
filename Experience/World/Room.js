@@ -9,16 +9,18 @@ export default class Room{
         this.sizes = this.experience.sizes
         this.canvas = this.experience.canvas
         this.resources = this.experience.resources
+        this.time = this.experience.time
         this.room = this.resources.items.room
         this.actualRoom = this.room.scene
 
         this.setModel()
+        this.setAnimation()
     }
 
     setModel()
     {
         this.scene.add(this.actualRoom)
-        this.actualRoom.scale.set(0.01, 0.01, 0.01)
+        this.actualRoom.scale.set(0.005, 0.005, 0.005)
         this.actualRoom.rotation.y = Math.PI /4
 
         this.actualRoom.children.forEach((child)=>{
@@ -60,5 +62,21 @@ export default class Room{
                 )
             }
         })
+    }
+
+    setAnimation()
+    {
+        this.mixer = new THREE.AnimationMixer(this.actualRoom)
+        this.swim = this.mixer.clipAction(this.room.animations[0])
+        this.swim.play()
+    }
+    resize()
+    {
+
+    }
+
+    update()
+    {
+        this.mixer.update(this.time.delta * 0.001)
     }
 }
