@@ -40,6 +40,25 @@ export default class Room{
                     // }
                 })
             }
+
+            if( child.name === "aquaglass")
+            {
+                child.material = new THREE.MeshPhysicalMaterial()
+                child.material.roughness = 0
+                child.material.color.set(0x00ffff)
+                child.material.ior = 2
+                child.material.transmission = 1
+                child.material.opacity = 1
+            }
+
+            if( child.name === "screen")
+            {
+                child.material = new THREE.MeshBasicMaterial(
+                    {
+                        map: this.resources.items.screen
+                    }
+                )
+            }
         })
     }
 }
