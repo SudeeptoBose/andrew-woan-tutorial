@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Experience from '../Experience'
+import { gsap } from 'gsap'
 
 export default class Controls{
     constructor()
