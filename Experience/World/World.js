@@ -34,5 +34,9 @@ export default class World{
         {
             this.room.update()
         }
+        if(this.controls)
+        {
+            this.controls.update()
+        }
     }
 }

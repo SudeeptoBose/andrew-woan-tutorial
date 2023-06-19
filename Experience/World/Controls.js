@@ -9,8 +9,13 @@ export default class Controls{
         this.sizes = this.experience.sizes
         this.resources = this.experience.resources
         this.time = this.experience.time
+        this.camera = this.experience.camera
+
+        this.progress = 0
+        this.dummyVector = new THREE.Vector3(0,0,0)
 
         this.setPath()
+        this.onWheel()
     }
 
     setPath()
@@ -21,8 +26,10 @@ export default class Controls{
             new THREE.Vector3( 0, 0, 0 ),
             new THREE.Vector3( 5, -5, 5 ),
             new THREE.Vector3( 10, 0, 10 )
-        ] );
+        ], true );
         
+
+
         const points = this.curve.getPoints( 50 );
         const geometry = new THREE.BufferGeometry().setFromPoints( points );
         
@@ -34,6 +41,22 @@ export default class Controls{
         this.scene.add(curveObject)
     }
 
+    onWheel()
+    {
+        window.addEventListener('wheel', (e)=>{
+            console.log(e)
+            if(e.deltaY > 0){
+                this.progress += 0.01
+            } else{
+                this.progress -= 0.01
+                if(this.progress < 0)
+                {
+                    this.progress = 1
+                }
+            }
+        })
+    }
+
     resize()
     {
 
@@ -41,5 +64,9 @@ export default class Controls{
 
     update()
     {
+        this.curve.getPointAt(this.progress % 1, this.dummyVector)
+        // this.progress -= 0.01
+
+        this.camera.orthographicCamera.position.copy(this.dummyVector)
     }
 }
