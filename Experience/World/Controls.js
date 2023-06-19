@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import Experience from '../Experience'
-import { gsap } from 'gsap'
+import GSAP from 'gsap'
 
 export default class Controls{
     constructor()
@@ -12,8 +12,17 @@ export default class Controls{
         this.time = this.experience.time
         this.camera = this.experience.camera
 
-        this.progress = 0
-        this.dummyVector = new THREE.Vector3(0,0,0)
+        this.lerp = {
+            current: 0,
+            target: 0,
+            ease: 0.1
+        }
+        this.position = new THREE.Vector3(0,0,0)
+        this.lookAtPosition = new THREE.Vector3(0,0,0)
+
+        this.directionalVector = new THREE.Vector3(0,0,0)
+        this.staticVector = new THREE.Vector3(0,1,0)
+        this.crossVector = new THREE.Vector3(0,0,0)
 
         this.setPath()
         this.onWheel()
@@ -47,13 +56,15 @@ export default class Controls{
         window.addEventListener('wheel', (e)=>{
             console.log(e)
             if(e.deltaY > 0){
-                this.progress += 0.01
+                this.lerp.target += 0.01
+                // this.back = true
             } else{
-                this.progress -= 0.01
-                if(this.progress < 0)
-                {
-                    this.progress = 1
-                }
+                this.lerp.target -= 0.01
+                // if(this.lerp.target < 0)
+                // {
+                //     this.lerp.target = 1
+                // }
+                // this.back = false
             }
         })
     }
@@ -65,9 +76,39 @@ export default class Controls{
 
     update()
     {
-        this.curve.getPointAt(this.progress % 1, this.dummyVector)
-        // this.progress -= 0.01
+        this.lerp.current = GSAP.utils.interpolate(
+            this.lerp.current,
+            this.lerp.target,
+            this.lerp.ease
+        )
 
-        this.camera.orthographicCamera.position.copy(this.dummyVector)
+        
+        // this.lerp.target= GSAP.utils.clamp(0,1, this.lerp.target)
+        // this.lerp.current=GSAP.utils.clamp(0,1, this.lerp.current)
+        // if(this.back)
+        // {
+        //     this.lerp.target +=0.001
+        // } else
+        // {
+        //     this.lerp.target -=0.001
+        // }
+        // this.curve.getPointAt(this.lerp.current, this.position)
+        // this.curve.getPointAt(this.lerp.current + 0.001, this.lookAtPosition)
+
+        // this.camera.orthographicCamera.position.copy(this.position)
+        // this.camera.orthographicCamera.lookAt(this.lookAtPosition)
+        
+        this.curve.getPointAt(this.lerp.current % 1, this.position)
+        this.camera.perspectiveCamera.position.copy(this.position)
+        
+        this.directionalVector.subVectors(
+        this.curve.getPointAt((this.lerp.current % 1)+ 0.00001), this.position)
+        this.directionalVector.normalize()
+        this.crossVector.crossVectors(
+            this.directionalVector,
+            this.staticVector
+        )
+        this.crossVector.multiplyScalar(100000)
+        this.camera.perspectiveCamera.lookAt(0,0,0)
     }
 }

@@ -21,6 +21,7 @@ export default class Room{
         this.scene.add(this.actualRoom)
         this.actualRoom.scale.set(0.005, 0.005, 0.005)
         this.actualRoom.rotation.y = Math.PI /4
+        this.actualRoom.position.y = -1
 
         this.actualRoom.children.forEach((child)=>{
             // console.log(child)
