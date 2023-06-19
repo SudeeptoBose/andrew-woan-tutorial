@@ -22,8 +22,8 @@ export default class Environment{
         this.sunLight.position.set(1.5, 10, 3)
         this.scene.add(this.sunLight)
 
-        const shadowHelper = new THREE.CameraHelper(this.sunLight.shadow.camera)
-        this.scene.add(shadowHelper)
+        // const shadowHelper = new THREE.CameraHelper(this.sunLight.shadow.camera)
+        // this.scene.add(shadowHelper)
 
         this.ambientLight = new THREE.AmbientLight(0xffffff, 1)
         this.scene.add(this.ambientLight)

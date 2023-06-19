@@ -7,7 +7,6 @@ export default class Room{
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.sizes = this.experience.sizes
-        this.canvas = this.experience.canvas
         this.resources = this.experience.resources
         this.time = this.experience.time
         this.room = this.resources.items.room
@@ -24,7 +23,7 @@ export default class Room{
         this.actualRoom.rotation.y = Math.PI /4
 
         this.actualRoom.children.forEach((child)=>{
-            console.log(child)
+            // console.log(child)
             child.castShadow = true
             child.receiveShadow = true
 
