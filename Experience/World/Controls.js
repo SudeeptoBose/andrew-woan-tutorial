@@ -17,56 +17,6 @@ export default class Controls{
             target: 0,
             ease: 0.1
         }
-        this.position = new THREE.Vector3(0,0,0)
-        this.lookAtPosition = new THREE.Vector3(0,0,0)
-
-        this.directionalVector = new THREE.Vector3(0,0,0)
-        this.staticVector = new THREE.Vector3(0,1,0)
-        this.crossVector = new THREE.Vector3(0,0,0)
-
-        this.setPath()
-        this.onWheel()
-    }
-
-    setPath()
-    {
-        this.curve = new THREE.CatmullRomCurve3( [
-            new THREE.Vector3( -10, 0, 10 ),
-            new THREE.Vector3( -5, 5, 5 ),
-            new THREE.Vector3( 0, 0, 0 ),
-            new THREE.Vector3( 5, -5, 5 ),
-            new THREE.Vector3( 10, 0, 10 )
-        ], true );
-        
-
-
-        const points = this.curve.getPoints( 50 );
-        const geometry = new THREE.BufferGeometry().setFromPoints( points );
-        
-        const material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
-        
-        // Create the final object to add to the scene
-        const curveObject = new THREE.Line( geometry, material );
-
-        this.scene.add(curveObject)
-    }
-
-    onWheel()
-    {
-        window.addEventListener('wheel', (e)=>{
-            console.log(e)
-            if(e.deltaY > 0){
-                this.lerp.target += 0.01
-                // this.back = true
-            } else{
-                this.lerp.target -= 0.01
-                // if(this.lerp.target < 0)
-                // {
-                //     this.lerp.target = 1
-                // }
-                // this.back = false
-            }
-        })
     }
 
     resize()
@@ -81,34 +31,5 @@ export default class Controls{
             this.lerp.target,
             this.lerp.ease
         )
-
-        
-        // this.lerp.target= GSAP.utils.clamp(0,1, this.lerp.target)
-        // this.lerp.current=GSAP.utils.clamp(0,1, this.lerp.current)
-        // if(this.back)
-        // {
-        //     this.lerp.target +=0.001
-        // } else
-        // {
-        //     this.lerp.target -=0.001
-        // }
-        // this.curve.getPointAt(this.lerp.current, this.position)
-        // this.curve.getPointAt(this.lerp.current + 0.001, this.lookAtPosition)
-
-        // this.camera.orthographicCamera.position.copy(this.position)
-        // this.camera.orthographicCamera.lookAt(this.lookAtPosition)
-        
-        this.curve.getPointAt(this.lerp.current % 1, this.position)
-        this.camera.perspectiveCamera.position.copy(this.position)
-        
-        this.directionalVector.subVectors(
-        this.curve.getPointAt((this.lerp.current % 1)+ 0.00001), this.position)
-        this.directionalVector.normalize()
-        this.crossVector.crossVectors(
-            this.directionalVector,
-            this.staticVector
-        )
-        this.crossVector.multiplyScalar(100000)
-        this.camera.perspectiveCamera.lookAt(0,0,0)
     }
 }

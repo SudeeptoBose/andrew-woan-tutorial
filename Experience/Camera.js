@@ -25,8 +25,8 @@ export default class Camera{
         const size = 20;
         const divisions = 10;
         
-        const gridHelper = new THREE.GridHelper( size, divisions );
-        this.scene.add( gridHelper );
+        // const gridHelper = new THREE.GridHelper( size, divisions );
+        // this.scene.add( gridHelper );
         
         const axesHelper = new THREE.AxesHelper( 5 );
         this.scene.add( axesHelper );
@@ -40,12 +40,17 @@ export default class Camera{
             (this.sizes.aspectRatio * this.sizes.frustrum)/2,
             this.sizes.frustrum / 2,
             -this.sizes.frustrum /2,
-            -10,
-            10
+            -50,
+            50
          )
         this.scene.add(this.orthographicCamera)
-        this.orthographicCameraHelper = new THREE.CameraHelper(this.orthographicCamera)
-        this.scene.add(this.orthographicCameraHelper)
+        
+        this.orthographicCamera.position.y = 10
+        this.orthographicCamera.position.z = 15
+        this.orthographicCamera.rotation.x = - Math.PI / 5.5
+
+        // this.orthographicCameraHelper = new THREE.CameraHelper(this.orthographicCamera)
+        // this.scene.add(this.orthographicCameraHelper)
     }
 
     setOrbitControls()
@@ -76,10 +81,10 @@ export default class Camera{
     {
         // console.log(this.perspectiveCamera.position)
         this.controls.update()
-        this.orthographicCameraHelper.matrixWorldNeedsUpdate = true
-        this.orthographicCameraHelper.update()
-        this.orthographicCameraHelper.position.copy(this.orthographicCamera.position)
-        this.orthographicCameraHelper.rotation.copy(this.orthographicCamera.rotation)
+        // this.orthographicCameraHelper.matrixWorldNeedsUpdate = true
+        // this.orthographicCameraHelper.update()
+        // this.orthographicCameraHelper.position.copy(this.orthographicCamera.position)
+        // this.orthographicCameraHelper.rotation.copy(this.orthographicCamera.rotation)
 
     }
 }
