@@ -20,14 +20,17 @@ export default class World{
             this.room = new Room()
             console.log('created room')
             this.floor = new Floor()
-            this.controls = new Controls()
+            // this.controls = new Controls()
         })
 
     }
 
     resize()
     {
-
+        if(this.room)
+        {
+            this.room.resize()
+        }
     }
 
     update()

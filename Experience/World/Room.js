@@ -27,6 +27,7 @@ export default class Room{
     setModel()
     {
         this.scene.add(this.actualRoom)
+        console.log(this.actualRoom)
         this.actualRoom.scale.set(0.002, 0.002, 0.002)
         // this.actualRoom.rotation.y = Math.PI / 4
         this.actualRoom.position.y = -1
@@ -41,13 +42,6 @@ export default class Room{
                 child.children.forEach((objectChild)=>{
                     objectChild.castShadow = true
                     objectChild.receiveShadow = true
-                    // if(child.children instanceof THREE.Group)
-                    // {
-                    //     child.children.children.forEach((groupChild)=>{
-                    //         groupChild.castShadow = true
-                    //         groupChild.receiveShadow = true
-                    //     })
-                    // }
                 })
             }
 
@@ -89,7 +83,7 @@ export default class Room{
     }
     resize()
     {
-
+        console.log(this.actualRoom)
     }
 
     update()
