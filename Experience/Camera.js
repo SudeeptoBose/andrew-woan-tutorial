@@ -9,9 +9,9 @@ export default class Camera{
         this.sizes = this.experience.sizes
         this.canvas = this.experience.canvas
 
-        this.createPerspectiveCamera()
+        // this.createPerspectiveCamera()
         this.createOrthographicCamera()
-        this.setOrbitControls()
+        // this.setOrbitControls()
         // this.setHelpers()
     }
 
@@ -67,20 +67,20 @@ export default class Camera{
     }
     resize()
     {
-        this.perspectiveCamera.aspect = this.sizes.aspectRatio
-        this.perspectiveCamera.updateProjectionMatrix()
+        // this.perspectiveCamera.aspect = this.sizes.aspectRatio
+        // this.perspectiveCamera.updateProjectionMatrix()
 
         this.orthographicCamera.left = (-this.sizes.aspectRatio * this.sizes.frustrum) / 2
         this.orthographicCamera.right = (this.sizes.aspectRatio * this.sizes.frustrum)/2
-        this.orthographicCamera.top = -this.sizes.frustrum / 2
-        this.orthographicCamera.bottom = this.sizes.frustrum /2
+        this.orthographicCamera.top = this.sizes.frustrum / 2
+        this.orthographicCamera.bottom = -this.sizes.frustrum /2
         this.orthographicCamera.updateProjectionMatrix()
     }
 
     update()
     {
         // console.log(this.perspectiveCamera.position)
-        this.controls.update()
+        // this.controls.update()
         // this.orthographicCameraHelper.matrixWorldNeedsUpdate = true
         // this.orthographicCameraHelper.update()
         // this.orthographicCameraHelper.position.copy(this.orthographicCamera.position)
