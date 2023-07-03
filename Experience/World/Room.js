@@ -13,6 +13,8 @@ export default class Room{
         this.time = this.experience.time
         this.room = this.resources.items.room
         this.actualRoom = this.room.scene
+        this.parentTable = this.resources.items.table
+        this.table = this.resources.items.table.scene
 
         this.lerp = {
             current: 0,
@@ -20,9 +22,43 @@ export default class Room{
             ease: 0.1
         }
 
-        this.setModel()
-        this.setAnimation()
-        this.onMouseMove()
+        // this.setModel()
+        // this.setAnimation()
+        // this.onMouseMove()
+        this.setTable()
+        this.setTableAnimation()
+    }
+
+    setTable()
+    {
+        this.scene.add(this.table)
+        console.log(this.table.children)
+        this.table.scale.set(2,2,2)
+        this.table.children.forEach((child)=>{
+            console.log(child)
+            child.castShadow = true
+            child.receiveShadow = true
+            if( child instanceof THREE.Object3D )
+            {
+                child.children.forEach((objectChild)=>{
+                    objectChild.castShadow = true
+                    objectChild.receiveShadow = true
+                    // if(child.children instanceof THREE.Group)
+                    // {
+                    //     child.children.children.forEach((groupChild)=>{
+                    //         groupChild.castShadow = true
+                    //         groupChild.receiveShadow = true
+                    //     })
+                    // }
+                })
+            }
+        })
+    }
+    setTableAnimation()
+    {
+        this.mixer = new THREE.AnimationMixer(this.table)
+        this.swing = this.mixer.clipAction(this.parentTable.animations[0])
+        this.swing.play()
     }
 
     setModel()
@@ -112,11 +148,11 @@ export default class Room{
     {
         this.mixer.update(this.time.delta * 0.001)
 
-        this.lerp.current = GSAP.utils.interpolate(
-            this.lerp.current,
-            this.lerp.target,
-            this.lerp.ease
-        )
-        this.actualRoom.rotation.y = this.lerp.current
+        // this.lerp.current = GSAP.utils.interpolate(
+        //     this.lerp.current,
+        //     this.lerp.target,
+        //     this.lerp.ease
+        // )
+        // this.actualRoom.rotation.y = this.lerp.current
     }
 }

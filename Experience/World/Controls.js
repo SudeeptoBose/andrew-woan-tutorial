@@ -12,7 +12,7 @@ export default class Controls{
         this.resources = this.experience.resources
         this.time = this.experience.time
         this.camera = this.experience.camera
-        this.room = this.experience.world.room.actualRoom
+        this.room = this.experience.world.room.table
 
         GSAP.registerPlugin(ScrollTrigger)
         this.setPath()
@@ -20,7 +20,7 @@ export default class Controls{
 
     setPath()
     {
-        console.log(this.room)
+        // console.log(this.room)
         this.timeline = GSAP.timeline()
         this.timeline.to(this.room.position, {
             x: ()=>{

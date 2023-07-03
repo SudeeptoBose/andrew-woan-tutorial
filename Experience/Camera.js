@@ -28,8 +28,8 @@ export default class Camera{
         // const gridHelper = new THREE.GridHelper( size, divisions );
         // this.scene.add( gridHelper );
         
-        const axesHelper = new THREE.AxesHelper( 5 );
-        this.scene.add( axesHelper );
+        // const axesHelper = new THREE.AxesHelper( 5 );
+        // this.scene.add( axesHelper );
     }
 
     createOrthographicCamera()
@@ -57,7 +57,7 @@ export default class Camera{
     {
         this.controls = new OrbitControls(this.perspectiveCamera, this.canvas)
         this.controls.enableDamping = true
-        this.controls.enableZoom = false
+        this.controls.enableZoom = true
     }
 
     setHelpers()
@@ -67,14 +67,14 @@ export default class Camera{
     }
     resize()
     {
-        // this.perspectiveCamera.aspect = this.sizes.aspectRatio
-        // this.perspectiveCamera.updateProjectionMatrix()
+        this.perspectiveCamera.aspect = this.sizes.aspectRatio
+        this.perspectiveCamera.updateProjectionMatrix()
 
-        this.orthographicCamera.left = (-this.sizes.aspectRatio * this.sizes.frustrum) / 2
-        this.orthographicCamera.right = (this.sizes.aspectRatio * this.sizes.frustrum)/2
-        this.orthographicCamera.top = this.sizes.frustrum / 2
-        this.orthographicCamera.bottom = -this.sizes.frustrum /2
-        this.orthographicCamera.updateProjectionMatrix()
+        // this.orthographicCamera.left = (-this.sizes.aspectRatio * this.sizes.frustrum) / 2
+        // this.orthographicCamera.right = (this.sizes.aspectRatio * this.sizes.frustrum)/2
+        // this.orthographicCamera.top = this.sizes.frustrum / 2
+        // this.orthographicCamera.bottom = -this.sizes.frustrum /2
+        // this.orthographicCamera.updateProjectionMatrix()
     }
 
     update()

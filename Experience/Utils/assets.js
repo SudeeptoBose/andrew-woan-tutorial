@@ -13,5 +13,10 @@ export default[
         name: "roomC4D",
         type: "gltfModel",
         path: "/models/room.gltf"
+    },
+    {
+        name: "table",
+        type: "gltfModel",
+        path: "/models/table.gltf"
     }
 ]
