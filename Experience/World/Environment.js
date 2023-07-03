@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import Experience from '../Experience'
-
+import GSAP from 'gsap'
 export default class Environment{
     constructor()
     {
@@ -27,5 +27,20 @@ export default class Environment{
 
         this.ambientLight = new THREE.AmbientLight(0xffffff, 1)
         this.scene.add(this.ambientLight)
+    }
+
+    switchTheme(theme)
+    {
+        if(theme === "dark")
+        {
+            console.log('switch')
+            GSAP.to(this.sunLight.color, {
+                r:0,
+                g:0,
+                b:0
+            })
+        }else {
+
+        }
     }
 }
