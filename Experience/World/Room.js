@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience'
 import GSAP from 'gsap'
-import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js'
+
 
 export default class Room{
     constructor()
@@ -32,10 +32,10 @@ export default class Room{
     setTable()
     {
         this.scene.add(this.table)
-        console.log(this.table.children)
+        console.log(this.table)
         this.table.scale.set(2,2,2)
         this.table.children.forEach((child)=>{
-            console.log(child)
+            // console.log(child)
             child.castShadow = true
             child.receiveShadow = true
             if( child instanceof THREE.Object3D )
@@ -52,7 +52,20 @@ export default class Room{
                     // }
                 })
             }
+            if( child.name === "Show")
+            {
+                if( child instanceof THREE.Object3D)
+                {
+                    child.children.forEach((showPiece)=>{
+                        showPiece.children.forEach((piece)=>{
+                            piece.castShadow = true
+                            piece.receiveShadow = true
+                        })
+                    })
+                }
+            }
         })
+
     }
     setTableAnimation()
     {
