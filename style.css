@@ -13,6 +13,15 @@ html, body
   color: var(--color-text);
 }
 
+h1,
+section,
+p,
+svg,
+span
+{
+  transition: all 0.2s;
+}
+
 :root
 {
   /* Light theme variables*/
