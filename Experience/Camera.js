@@ -67,14 +67,14 @@ export default class Camera{
     }
     resize()
     {
-        this.perspectiveCamera.aspect = this.sizes.aspectRatio
-        this.perspectiveCamera.updateProjectionMatrix()
+        // this.perspectiveCamera.aspect = this.sizes.aspectRatio
+        // this.perspectiveCamera.updateProjectionMatrix()
 
-        // this.orthographicCamera.left = (-this.sizes.aspectRatio * this.sizes.frustrum) / 2
-        // this.orthographicCamera.right = (this.sizes.aspectRatio * this.sizes.frustrum)/2
-        // this.orthographicCamera.top = this.sizes.frustrum / 2
-        // this.orthographicCamera.bottom = -this.sizes.frustrum /2
-        // this.orthographicCamera.updateProjectionMatrix()
+        this.orthographicCamera.left = (-this.sizes.aspectRatio * this.sizes.frustrum) / 2
+        this.orthographicCamera.right = (this.sizes.aspectRatio * this.sizes.frustrum)/2
+        this.orthographicCamera.top = this.sizes.frustrum / 2
+        this.orthographicCamera.bottom = -this.sizes.frustrum /2
+        this.orthographicCamera.updateProjectionMatrix()
     }
 
     update()

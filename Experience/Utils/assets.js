@@ -18,5 +18,10 @@ export default[
         name: "table",
         type: "gltfModel",
         path: "/models/table.gltf"
+    },
+    {
+        name: "wood",
+        type: "texture",
+        path: "/textures/wooden.jpg"
     }
 ]

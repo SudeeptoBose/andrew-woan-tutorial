@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { EventEmitter } from "events";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js"
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader";
+
 import Experience from "../Experience";
 
 export default class Resources extends EventEmitter{
@@ -26,6 +27,7 @@ export default class Resources extends EventEmitter{
         this.loaders = {}
         this.loaders.gltfLoader = new GLTFLoader()
         this.loaders.dracoLoader = new DRACOLoader()
+        this.loaders.textureLoader = new THREE.TextureLoader()
         this.loaders.dracoLoader.setDecoderPath('/draco')
         this.loaders.gltfLoader.setDRACOLoader(this.loaders.dracoLoader)
     }
@@ -61,6 +63,12 @@ export default class Resources extends EventEmitter{
                 this.videoTexture[asset.name].outputColorSpace = THREE.SRGBColorSpace
                 
                 this.singleAssetLoaded(asset, this.videoTexture[asset.name])
+            }
+            else if(asset.type === 'texture')
+            {
+                this.loaders.textureLoader.load(asset.path, (file) =>{
+                    this.singleAssetLoaded(asset, file)
+                })
             }
         }
     }

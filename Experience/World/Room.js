@@ -15,6 +15,7 @@ export default class Room{
         this.actualRoom = this.room.scene
         this.parentTable = this.resources.items.table
         this.table = this.resources.items.table.scene
+        this.woodenTexture = this.resources.items.wood
 
         this.lerp = {
             current: 0,
@@ -24,7 +25,7 @@ export default class Room{
 
         // this.setModel()
         // this.setAnimation()
-        // this.onMouseMove()
+        this.onMouseMove()
         this.setTable()
         this.setTableAnimation()
     }
@@ -32,7 +33,7 @@ export default class Room{
     setTable()
     {
         this.scene.add(this.table)
-        console.log(this.table)
+        console.log(this.woodenTexture)
         this.table.scale.set(2,2,2)
         this.table.children.forEach((child)=>{
             // console.log(child)
@@ -64,6 +65,11 @@ export default class Room{
                     })
                 }
             }
+
+            if( child.name === "Table")
+            {
+                console.log(child.children[0].material.map = this.woodenTexture)
+            }
         })
 
     }
@@ -80,17 +86,6 @@ export default class Room{
         this.actualRoom.scale.set(0.002, 0.002, 0.002)
         // this.actualRoom.rotation.y = Math.PI / 4
         this.actualRoom.position.y = -1
-
-        // const width = 1;
-        // const height = 1;
-        // const intensity = 1;
-        // const rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
-        // rectLight.position.set( 0, 0, 0 );
-        // rectLight.lookAt( 0, 0, 0 );
-        // this.actualRoom.add( rectLight )
-
-        // const rectLightHelper = new RectAreaLightHelper( rectLight );
-        // rectLight.add( rectLightHelper );
 
         this.actualRoom.children.forEach((child)=>{
             // console.log(child)
@@ -131,9 +126,6 @@ export default class Room{
                 )
             }
 
-    
-            // const rectLightHelper = new RectAreaLightHelper( rectLight );
-            // rectLight.add( rectLightHelper );
         })
     }
 
@@ -152,6 +144,7 @@ export default class Room{
             this.lerp.target = this.rotation * 0.1
         })
     }
+
     resize()
     {
 
@@ -161,11 +154,11 @@ export default class Room{
     {
         this.mixer.update(this.time.delta * 0.001)
 
-        // this.lerp.current = GSAP.utils.interpolate(
-        //     this.lerp.current,
-        //     this.lerp.target,
-        //     this.lerp.ease
-        // )
-        // this.actualRoom.rotation.y = this.lerp.current
+        this.lerp.current = GSAP.utils.interpolate(
+            this.lerp.current,
+            this.lerp.target,
+            this.lerp.ease
+        )
+        this.table.rotation.y = this.lerp.current
     }
 }

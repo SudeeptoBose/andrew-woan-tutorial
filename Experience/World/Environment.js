@@ -35,7 +35,7 @@ export default class Environment{
         this.sunLight.shadow.camera.near = 5
         this.sunLight.shadow.mapSize.set(2048, 2048)
         this.sunLight.shadow.normalBias = 0.05
-        this.sunLight.position.set(10, 10, 3)
+        this.sunLight.position.set(-10, 1, 3)
         this.scene.add(this.sunLight)
 
         // const shadowHelper = new THREE.CameraHelper(this.sunLight.shadow.camera)
@@ -47,16 +47,33 @@ export default class Environment{
 
     setLampLight()
     {
-        const width = 0.25;
-        const height = 0.25;
-        const intensity = 1;
-        const rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
-        rectLight.position.set( 0.2595083713531494, 0.9766793847084045, -0.1834097057580948 );
-        rectLight.lookAt( 0, 0, -1 );
-        this.table.add( rectLight )
+        // const width = 0.15;
+        // const height = 0.15;
+        // const intensity = 15;
+        // const rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
+        // rectLight.position.set( 0.22, 1, -0.13 );
+        // rectLight.lookAt( -0.31366467475891113, 0.9642038941383362, 0.3891630470752716 );
+        // this.table.add( rectLight )
 
-        const rectLightHelper = new RectAreaLightHelper( rectLight );
-        rectLight.add( rectLightHelper );
+        // const rectLightHelper = new RectAreaLightHelper( rectLight );
+        // rectLight.add( rectLightHelper );
+
+        // const spotLight = new THREE.SpotLight( 0xffffff );
+        // spotLight.position.set( 0.22, 1.2, -0.13 );
+        // spotLight.lookAt(-0.31366467475891113, 0.9642038941383362, 0.3891630470752716 )
+        // this.table.add( spotLight );
+
+        // const spotLightHelper = new THREE.SpotLightHelper( spotLight );
+        // this.scene.add( spotLightHelper );
+
+        // const light = new THREE.PointLight( 0xffffff, 0.3, 100 );
+        // light.position.set( -0.05, 1.2, 0.1 );
+        // light.distance = 1
+        // this.table.add( light );
+
+        // const sphereSize = 1;
+        // const pointLightHelper = new THREE.PointLightHelper( light, sphereSize );
+        // this.scene.add( pointLightHelper );
     }
 
     switchTheme(theme)

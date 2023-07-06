@@ -10,14 +10,37 @@
 html, body
 {
   font-family: 'Montserrat', sans-serif;
-  color: var(--text-black);
+  color: var(--color-text);
 }
 
-:root{
-  --text-black: rgb(22, 22, 22);
-  --primary-color: #fafae5;
-  --primary-orange: rgb(155, 109, 25);
+:root
+{
+  /* Light theme variables*/
+  --color-text-light: #333332;
+  --color-background-light: #fafae5;
+  --color-green-light: #17cfa4;
+
+  /* Dark theme variables */
+
+  --color-text-dark: #fafae5;
+  --color-background-dark: #333332;
+  --color-green-dark: #8014b3;
 }
+
+.light-theme
+{
+  --color-text: var(--color-text-light);
+  --color-background: var(--color-background-light);
+  --color-green: var(--color-green-light);
+}
+
+.dark-theme
+{
+  --color-text: var(--color-text-dark);
+  --color-background: var(--color-background-dark);
+  --color-green: var(--color-green-dark)
+}
+
 
 /* Experience */
 .experience
@@ -78,7 +101,7 @@ html, body
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-orange);
+  background-color: var(--color-background);
   border-radius: 999px;
   margin: 0 16px;
   border: none;
@@ -92,7 +115,7 @@ html, body
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--color-green);
   transition: all 0.2s ease-in-out;
 }
 
@@ -118,7 +141,7 @@ html, body
   width: 50%;
   padding: 1000px 4%;
   margin: 0;
-  background-color: var(--primary-color) ;
+  background-color: var(--color-background) ;
 }
 
 .left
@@ -135,7 +158,7 @@ html, body
 {
   position: relative;
   padding: 20% 5%;
-  border-bottom: 2px solid var(--primary-orange);
+  border-bottom: 2px solid var(--color-green);
   padding-bottom: 400px;
 }
 
@@ -165,7 +188,7 @@ html, body
 .section-title
 {
   position: relative;
-  color: var(--primary-orange);
+  color: var(--color-green);
 }
 
 .section-title-text
@@ -188,7 +211,7 @@ html, body
   width: 100%;
   max-width: 278px;
   height: 60px;
-  border: 1px solid var(--primary-orange);
+  border: 1px solid var(--color-green);
   transform-origin: left;
   transform: skewY(-25deg);
 }
@@ -208,7 +231,7 @@ html, body
   top: 80px;
   transform-origin: left;
   transform: skewY(25deg);
-  background-color: var(--primary-orange);
+  background-color: var(--color-green);
 }
 
 /* Hero */
