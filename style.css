@@ -288,3 +288,12 @@ span
   text-transform: uppercase;
   font-size: 32px;
 }
+
+/* Media Queries */
+
+@media(max-width:968px){
+  .section{
+    width: 100%;
+  }
+
+}

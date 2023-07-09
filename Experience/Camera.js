@@ -40,8 +40,8 @@ export default class Camera{
             (this.sizes.aspectRatio * this.sizes.frustrum)/2,
             this.sizes.frustrum / 2,
             -this.sizes.frustrum /2,
-            -50,
-            50
+            -100,
+            100
          )
         this.scene.add(this.orthographicCamera)
         
@@ -85,6 +85,7 @@ export default class Camera{
         // this.orthographicCameraHelper.update()
         // this.orthographicCameraHelper.position.copy(this.orthographicCamera.position)
         // this.orthographicCameraHelper.rotation.copy(this.orthographicCamera.rotation)
+        // console.log(this.orthographicCamera.position, this.orthographicCamera.rotation)
 
     }
 }
