@@ -106,6 +106,20 @@ export default class Controls{
             // mobile
             "(max-width: 968px)": ()=> {
                 console.log('mobile')
+                // First timeline
+                this.firstTimeline = GSAP.timeline({
+                    scrollTrigger:{
+                        trigger: '.first-move',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: '0.6',
+                        invalidateOnRefresh: true
+                    }
+                })
+
+                // this.firstTimeline.to(this.room.position, {
+
+                // })
             },
               
             // all 
